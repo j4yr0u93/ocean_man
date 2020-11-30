@@ -1,0 +1,80 @@
+---
+title: "EE_Collector"
+author: "j4yr0u93"
+date: "11/21/2020"
+output: html_document
+---
+
+```{r libs, include=FALSE}
+#context is nelson 2019
+library(tidyverse)
+library(reticulate)
+```
+
+```{python init, echo=FALSE}
+#python libs for session
+import datetime
+import ee
+import ee.mapclient
+
+#init basically, can only be run locally and requires google ee registration and authentication
+ee.Initialize()
+
+#function wrapper for getting a creek
+def get_creek(center, bounds):
+  #set creek center
+  ee.mapclient.centerMap(center[0], center[1], center[2])
+  #set creek bounds
+  creek_bounds = ee.Geometry.Polygon(bounds)
+  #get creek collection
+  creek = (ee.ImageCollection('LANDSAT/LC08/C01/T1_SR')).filterDate(datetime.datetime(2016, 1, 1), datetime.datetime(2019, 12, 31)).filterBounds(creek_bounds)
+            
+  return(creek)
+          
+#setting and getting creek1, clubhead ref 
+center1 = [42.740402, -70.838151, 12]
+#lower right 42.739815, -70.837601
+#lower left 42.739815, -70.838671
+#upper left 42.741353, -70.838671
+#upper right 42.741353, -70.837601
+bounds1 = ([[
+        [42.739815, -70.837601], [42.739815, -70.838671],
+        [42.741353, -70.838671], [42.741353, -70.837601]]])
+
+creek1 = get_creek(center1, bounds1)
+
+median_test = creek1.median()
+```
+
+```{python example_test, echo=FALSE}
+import datetime
+import ee
+import ee.mapclient
+
+ee.Initialize()
+ee.mapclient.centerMap(-110, 40, 5)
+
+# Filter to only include images within the colorado and utah boundaries.
+polygon = ee.Geometry.Polygon([[
+    [-109.05, 37.0], [-102.05, 37.0], [-102.05, 41.0],   # colorado
+    [-109.05, 41.0], [-111.05, 41.0], [-111.05, 42.0],   # utah
+    [-114.05, 42.0], [-114.05, 37.0], [-109.05, 37.0]]])
+
+# Create a Landsat 7 composite for Spring of 2000, and filter by
+# the bounds of the FeatureCollection.
+collection = (ee.ImageCollection('LANDSAT/LE07/C01/T1')
+              .filterDate(datetime.datetime(2000, 4, 1),
+                          datetime.datetime(2000, 7, 1))
+              .filterBounds(polygon))
+
+# Select the median pixel.
+image1 = collection.median()
+
+# Select the red, green and blue bands.
+image = image1.select('B3', 'B2', 'B1')
+ee.mapclient.addToMap(image, {'gain': [1.4, 1.4, 1.1]})
+```
+
+```{r object_testing, echo=FALSE}
+
+```
