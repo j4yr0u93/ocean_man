@@ -27,12 +27,12 @@ def get_creek(center, bounds):
   #set creek bounds
   creek_bounds = ee.Geometry.Polygon(bounds)
   #get creek collection
-  creek = (ee.ImageCollection('LANDSAT/LC08/C01/T1_SR')).filterDate(datetime.datetime(2016, 1, 1), datetime.datetime(2019, 12, 31)).filterBounds(creek_bounds)
+  creek = (ee.ImageCollection('LANDSAT/LC08/C01/T1_SR')).filterDate(datetime.datetime(2018, 1, 1), datetime.datetime(2018, 12, 31)).filterBounds(creek_bounds)
             
   return(creek)
           
 #setting and getting creek1, clubhead ref 
-center1 = [42.740402, -70.838151, 12]
+center1 = [42.740402, -70.838151, 8]
 #lower right 42.739815, -70.837601
 #lower left 42.739815, -70.838671
 #upper left 42.741353, -70.838671
@@ -43,7 +43,8 @@ bounds1 = ([[
 
 creek1 = get_creek(center1, bounds1)
 
-median_test = creek1.median()
+size = creek1.size()
+
 ```
 
 ```{python example_test, echo=FALSE}

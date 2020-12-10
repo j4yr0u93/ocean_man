@@ -1,0 +1,85 @@
+---
+title: "data_convergence_exploration"
+author: "j4yr0u93"
+date: "12/3/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(readr)
+library(janitor)
+library(lubridate)
+library(pscl)
+macro <- read_csv('../data/LTE-TIDE-Macroinfauna.csv') %>% clean_names()
+nekton <- read_csv('../data/LTE-TIDE-NektonFlumeDensity.csv') %>% clean_names()
+plant <- read_csv('../data/LTE-TIDE-MarshPlantCover.csv') %>% clean_names()
+
+nekton <- nekton %>% mutate(month = str_extract(date, '[:alpha:]{3}'), year = as.double(str_extract(date, '[:digit:]{4}')))
+
+macro <- macro %>% mutate(month = str_extract(month, '[:alpha:]{3}'))
+
+macro$branch[macro$branch == 'L'] <- 'Left'
+macro$branch[macro$branch == 'R'] <- 'Right'
+
+macro2 <- macro %>% group_by(year, month, creek, branch) %>% summarise(num_fabricia_sabella = sum(num_fabricia_sabella),
+                                                               num_manayunkia_aestuarina = sum (num_manayunkia_aestuarina),
+                                                               num_eteone_heteropoda = sum(num_eteone_heteropoda),
+                                                               num_captiella_capitata = sum(num_captiella_capitata),
+                                                               num_nereis_diversicolor = sum(num_nereis_diversicolor),
+                                                               num_streblospio_benedicti = sum(num_streblospio_benedicti),
+                                                               num_polydora_cornuta = sum(num_polydora_cornuta),
+                                                               num_pygospio_elegans = sum(num_pygospio_elegans),
+                                                               num_marenzelleria_viridis = sum(num_marenzelleria_viridis),
+                                                               num_hobsonia_florida = sum(num_hobsonia_florida),
+                                                               num_orbiniidae = sum(num_orbiniidae),
+                                                               num_paranais_litoralis = sum(num_paranais_litoralis),
+                                                               num_tubificoides_benedeni = sum(num_tubificoides_benedeni),
+                                                               num_tubificoides_wasselli = sum(num_tubificoides_wasselli),
+                                                               num_tubificoides_brownae = sum(num_tubificoides_brownae),
+                                                               num_monopylephorus_sp = sum(num_monopylephorus_sp),
+                                                               num_psammoryctides_sp = sum(num_psammoryctides_sp),
+                                                               num_cernosvitoviella_immota = sum(num_cernosvitoviella_immota),
+                                                               num_orchestia_grillus = sum(num_orchestia_grillus),
+                                                               num_littorophiloscia_vittata = sum(num_littorophiloscia_vittata),
+                                                               num_erichsonella_attenuata = sum(num_erichsonella_attenuata),
+                                                               num_edotea_triloba = sum(num_edotea_triloba),
+                                                               num_hargeria_rapax = sum(num_hargeria_rapax),
+                                                               num_cyathura_polita = sum(num_cyathura_polita),
+                                                               num_geukensia_demissa = sum(num_geukensia_demissa),
+                                                               num_melampus_b = sum(num_melampus_b),
+                                                               num_nematostella_vectensis = sum(num_nematostella_vectensis),
+                                                               num_oxyurostylis_smithi = sum(num_oxyurostylis_smithi)) %>%
+                                                    pivot_longer(cols = starts_with('num_'),
+                                                                 names_to = 'species',
+                                                                 values_to = 'count',
+                                                                 names_prefix = 'num_') %>%
+                                                    mutate(type = 'macro')
+#creek name replacement
+nekton$creek[nekton$creek == 'CL'] <- 'Clubhead'
+nekton$creek[nekton$creek == 'NE'] <- 'Nelson'
+nekton$creek[nekton$creek == 'SW'] <- 'Sweeney'
+nekton$creek[nekton$creek == 'WE'] <- 'West'
+
+
+
+nekton2 <- nekton %>% group_by(year, month, creek) %>% summarise(num_number_caught = sum(number_caught),
+                                                                          num_nekton_density = sum(nekton_density))
+
+nektonxmacro <- full_join(macro2, nekton2, by = c("year", "month", "creek")) %>% na.omit()
+
+nektonxmacro$month[nektonxmacro$month == 'Jun'] <- 'June'
+nektonxmacro$month[nektonxmacro$month == 'Jul'] <- 'July'
+nektonxmacro$month[nektonxmacro$month == 'Aug'] <- 'August'
+nektonxmacro$month[nektonxmacro$month == 'Sep'] <- 'September'
+
+nektonxmacro <- nektonxmacro %>% mutate(date = my(month + )
+
+
+nekton2 %>% ggplot(aes(x = month, y = year, color = creek, size = num_nekton_density, alpha = 0.3)) +
+  geom_point() +
+  scale_size_continuous(range = c(0.1,5)) +
+  facet_wrap(creek~.)
+
+zeroinfl(num_oligochaetes ~ num_number_caught, data = nektonxmacro)
+```

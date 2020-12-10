@@ -1,0 +1,840 @@
+Dataset title:  Macroinfaunal counts, 2003-2017, from marsh cores along Rowley River tidal creeks associated with long term fertilization experiments, Rowley, MA.
+
+Dataset ID:  doi:10.6073/pasta/c3987bf3e1168a3ff8cd47da194824d3
+Dataset Creator
+
+	Name:		David Johnson
+	
+	Address:
+			Virginia Institute of Marine Science, Andrews Hall 336
+			Gloucester Point, VA 23062  US
+	
+	Phone:		(804) 684-7513
+	Email:		dsjohnson@vims.edu
+
+	Name:		Linda Deegan
+	
+	Address:
+			Woods Hole Research Center
+			Falmouth, MA 02540  US
+	
+	Phone:		508-444-1557
+	Email:		ldeegan@whrc.org
+
+	Organization:	Plum Island Ecosystems LTER
+	URL:		http://pie-lter.ecosystems.mbl.edu/
+
+
+Metadata Provider
+
+	Organization:	Plum Island Ecosystems LTER
+	URL:		http://pie-lter.ecosystems.mbl.edu/
+
+
+Dataset Abstract
+
+
+
+Dataset Keywords
+
+	Inorganic Nutrients
+	Disturbance
+	Population Dynamics
+	population dynamics
+	salt marshes
+	polychaetes
+	oligochaetes
+	PIE LTER
+	Plum Island Ecosystems
+
+
+Intellectual Rights
+
+
+
+Distribution
+
+	Online distribution:  https://pie-lter.ecosystems.mbl.edu/content/macroinfaunal-counts-2003-2013-marsh-cores-along-rowley-river-tidal-creeks-associated-long-t
+
+
+Geographic Coverage
+
+
+	Bounding Coordinates
+
+		Geographic description:	"Sweeney Creek", off Rowley River, Ipswich, MA
+		West bounding coordinate:	-70.847198486328
+		East bounding coordinate:	-70.847198486328
+		North bounding coordinate:	42.722244262695
+		South bounding coordinate:	42.722244262695
+	
+		Geographic description:	West Creek, off Rowley River, Rowley, MA.
+		West bounding coordinate:	-70.849662780762
+		East bounding coordinate:	-70.849662780762
+		North bounding coordinate:	42.737945556641
+		South bounding coordinate:	42.737945556641
+	
+		Geographic description:	Clubhead Creek off Rowley River, Rowley, MA.
+		West bounding coordinate:	-70.838386535645
+		East bounding coordinate:	-70.838386535645
+		North bounding coordinate:	42.739978790283
+		South bounding coordinate:	42.739978790283
+	
+		Geographic description:	Nelson Island Creek, off Rowley River, Rowley,
+		West bounding coordinate:	-70.833152770996
+		East bounding coordinate:	-70.833152770996
+		North bounding coordinate:	42.742115020752
+		South bounding coordinate:	42.742115020752
+	
+
+
+
+Temporal Coverage
+
+	Start Date:  2003-06-01
+	End Date:  2017-09-01
+
+Maintenance
+
+	
+          On going collection
+Version 01: January 25, 2012, updated data and metadata. Used MarcrosExportEML_HTML (working)pie_excel2007.xlsm 1/18/12 4:51 PM for QA/QC to EML 2.1.0
+Version 02: June 20, 2013 data and metadata updated to comply with importation to Drupal and LTER PASTA. Research location name and description updated.Used MarcrosExportEML_HTML (working)pie_excel2007.xlsm 3/14/13 12:02 PM for QA/QC to EML 2.1.0
+Version 03: November 14, 2014, new data and metadata updates which with importation to Drupal and LTER PASTA. Used MarcrosExportEML_HTML (working)pie_excel2007.xlsm 6/30/14 11:33 AM for QA/QC to EML 2.1.0
+Version 04: May 13, 2019, data and metadata updates to comply with importation to DEIMS7 and LTER Data Portal. Used MarcrosExportEML_HTML (working)pie_excel2007_Jan2018.xlsm 6/21/18 3:53 PM for QA/QC to EML 2.1.0
+ 
+        
+
+
+Dataset Contact
+
+
+
+Methods
+
+
+
+	Method Step 
+
+		Description 
+
+
+
+Data Table
+
+	Entity Name:  LTE-TIDE-Macroinfauna_csv
+	Entity Description:  Macroinfaunal counts, 2003-2013, from marsh cores along Rowley River tidal creeks associated with long term fertilization experiments, Rowley, MA.
+	Object Name:  LTE-TIDE-Macroinfauna.csv
+
+
+
+Data Format
+
+	Number of Header Lines:  1
+	Attribute Orientation:  column
+	Field Delimiter:  ,
+	Number of Records:  2118
+
+
+
+Attributes
+
+	Attribute Name:  Period
+	Attribute Label:  Period
+	Attribute Definition:  Sampling period
+	Storage Type:  string
+	Measurement Scale: 
+		Before|before treatments began= After=after treatments began
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  Year
+	Attribute Label:  Year
+	Attribute Definition:  Year Sampled
+	Storage Type:  date
+	Measurement Scale: 
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  Month
+	Attribute Label:  Month
+	Attribute Definition:  Month Sampled
+	Storage Type:  string
+	Measurement Scale: 
+		Month Sampled
+	Missing Value Code: 
+
+
+	Attribute Name:  Creek
+	Attribute Label:  Creek
+	Attribute Definition:  Creek Sampled
+	Storage Type:  string
+	Measurement Scale: 
+		SW= Sweeney-Nutrient Enriched
+		NE= Nelson- Nutrient Enriched
+		WE= West-Reference
+		CL= Clubhead-Reference
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  Nutrient
+	Attribute Label:  Nutrient
+	Attribute Definition:  Nutrient Enrichment Level in Sampled Area
+	Storage Type:  string
+	Measurement Scale: 
+		Reference= reference nutrient level
+		Fertilized= target concentration of 70 micromol
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  Branch
+	Attribute Label:  Branch
+	Attribute Definition:  Branch Sampled
+	Storage Type:  string
+	Measurement Scale: 
+		L= Left
+		R= Right
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  Fish
+	Attribute Label:  Fish
+	Attribute Definition:  Level of Fish Sampled
+	Storage Type:  string
+	Measurement Scale: 
+		Amb= Ambient fish densities
+		Low= killifish reductions (~60-80%)
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  Transect
+	Attribute Label:  Transect
+	Attribute Definition:  Transect Sampled
+	Storage Type:  string
+	Measurement Scale: 
+		Transect Sampled
+	Missing Value Code: 
+
+
+	Attribute Name:  Habitat
+	Attribute Label:  Habitat
+	Attribute Definition:  Habitat Sampled
+	Storage Type:  string
+	Measurement Scale: 
+		TSA= Tall Spartina alterniflora
+		SSA= Short Spartina alterniflora
+		SP= Spartina patens
+		MF= Mud Flat
+		CW= Creek wall
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  Rep
+	Attribute Label:  Rep
+	Attribute Definition:  Replicate # of Sample
+	Storage Type:  string
+	Measurement Scale: 
+		Replicate # of Sample
+	Missing Value Code: 
+
+
+	Attribute Name:  num Fabricia sabella
+	Attribute Label:  num Fabricia sabella
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Manayunkia aestuarina
+	Attribute Label:  num Manayunkia aestuarina
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Nereis diversicolor
+	Attribute Label:  num Nereis diversicolor
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Eteone heteropoda
+	Attribute Label:  num Eteone heteropoda
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Captiella capitata
+	Attribute Label:  num Captiella capitata
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Streblospio benedicti
+	Attribute Label:  num Streblospio benedicti
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Polydora cornuta
+	Attribute Label:  num Polydora cornuta
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Pygospio elegans
+	Attribute Label:  num Pygospio elegans
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Marenzelleria viridis
+	Attribute Label:  num Marenzelleria viridis
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Hobsonia florida
+	Attribute Label:  num Hobsonia florida
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Orbiniidae
+	Attribute Label:  num Orbiniidae
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Total polychaetes
+	Attribute Label:  num Total polychaetes
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Paranais litoralis
+	Attribute Label:  num Paranais litoralis
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Tubificoides benedeni
+	Attribute Label:  num Tubificoides benedeni
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Tubificoides wasselli
+	Attribute Label:  num Tubificoides wasselli
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Tubificoides brownae
+	Attribute Label:  num Tubificoides brownae
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Monopylephorus sp.
+	Attribute Label:  num Monopylephorus sp.
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Psammoryctides sp.
+	Attribute Label:  num Psammoryctides sp.
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Cernosvitoviella immota
+	Attribute Label:  num Cernosvitoviella immota
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num other_enchytraeids
+	Attribute Label:  num other_enchytraeids
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Unidentified oligochaetes
+	Attribute Label:  num Unidentified oligochaetes
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  Total Oligochaetes
+	Attribute Label:  Total Oligochaetes
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num amphipods
+	Attribute Label:  num amphipods
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num talitrid amphipods
+	Attribute Label:  num talitrid amphipods
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Orchestia grillus
+	Attribute Label:  num Orchestia grillus
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num gamarid amphipods
+	Attribute Label:  num gamarid amphipods
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  Total amphipods
+	Attribute Label:  Total amphipods
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Littorophiloscia vittata
+	Attribute Label:  num Littorophiloscia vittata
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Erichsonella attenuata
+	Attribute Label:  num Erichsonella attenuata
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Edotea triloba
+	Attribute Label:  num Edotea triloba
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Hargeria rapax
+	Attribute Label:  num Hargeria rapax
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Ceratopogonidae
+	Attribute Label:  num Ceratopogonidae
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Tabanidae
+	Attribute Label:  num Tabanidae
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Dolichopodidae
+	Attribute Label:  num Dolichopodidae
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Insect
+	Attribute Label:  num Insect
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  Total Insect
+	Attribute Label:  Total Insect
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Isopoda
+	Attribute Label:  num Isopoda
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Cyathura polita
+	Attribute Label:  num Cyathura polita
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  Total Isopoda
+	Attribute Label:  Total Isopoda
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num mussels
+	Attribute Label:  num mussels
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Geukensia demissa
+	Attribute Label:  num Geukensia demissa
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Bivalve
+	Attribute Label:  num Bivalve
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  Total Bivalve
+	Attribute Label:  Total Bivalve
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Melampus b.
+	Attribute Label:  num Melampus b.
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Gastropoda
+	Attribute Label:  num Gastropoda
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Mites
+	Attribute Label:  num Mites
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Ostracod
+	Attribute Label:  num Ostracod
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Springtail
+	Attribute Label:  num Springtail
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (missing)
+
+
+	Attribute Name:  num Psuedoscorpion
+	Attribute Label:  num Psuedoscorpion
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Spider
+	Attribute Label:  num Spider
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Turbellaria
+	Attribute Label:  num Turbellaria
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num flatworm
+	Attribute Label:  num flatworm
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  total flatworm
+	Attribute Label:  total flatworm
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Nematostella vectensis
+	Attribute Label:  num Nematostella vectensis
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num  Actiniaria
+	Attribute Label:  num  Actiniaria
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  total  Actiniaria
+	Attribute Label:  total  Actiniaria
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Nemertea
+	Attribute Label:  num Nemertea
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Oxyurostylis smithi
+	Attribute Label:  num Oxyurostylis smithi
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num unknown
+	Attribute Label:  num unknown
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+
+	Attribute Name:  num Limulus
+	Attribute Label:  num Limulus
+	Attribute Definition:  counts per core
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (not available)
+
+

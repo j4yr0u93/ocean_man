@@ -1,0 +1,271 @@
+Dataset title:  Nekton species counts and density from flume net collections along Rowley River tidal creeks associated with long term fertilization experiments, Rowley, MA.
+
+Dataset ID:  LTE-TIDE-NektonFlumeDensity.04
+Dataset Creator
+
+	Name:		Linda Deegan
+	Organization:	Plum Island Ecosystems LTER Program
+	
+	Address:
+			The Ecosystems Center
+			Marine Biological Laboratory
+			7 MBL St.
+			Woods Hole, MA 02543  USA
+	
+
+
+Metadata Provider
+
+	Organization:	Plum Island Ecosystems LTER Program
+	
+	Address:
+			The Ecosystems Center
+			Marine Biological Lab
+			7 MBL St
+			Woods Hole, MA 02543  USA
+	
+	Phone:		(508) 289 7485
+	Email:		pie_im@mbl.edu
+	URL:		http://pie-lter.ecosystems.mbl.edu
+
+
+Dataset Abstract
+
+	The flume nets were deployed with the purpose of capturing salt marsh nekton. Nekton species were identified to the lowest taxonomic level using species keys. The TIDE project aims to simulate eutrophication on a large scale by the addition of NO3- aiming to reach 70µM concentrations from May to September every year during the growing season. This fertilization of the marsh has been going on at Sweeney Creek since the 2004 growing season through 2011 and at Clubhead Creek in 2005 and from 2009 till 2015.
+
+
+Dataset Keywords
+
+	PIE LTER
+	TIDE
+	population dynamics
+	salt marsh
+	flume nets
+	fish
+	nekton
+	shrimp
+
+
+Intellectual Rights
+
+	Acceptance and utilization of PIE-LTER data requires that:
+	
+        
+          
+            The Principal Investigator be sent a notice stating reasons for acquiring any data and a description of the publication intentions.
+          
+          
+            The Principal Investigator of the data set be sent a copy of the report or manuscript prior to submission and be adequately cited in any resultant publications
+          
+          
+            A copy of any resultant publications should be sent to: 
+            
+Principal Investigator
+Ecosystems Center
+Marine Biological Laboratory
+Woods Hole, MA 02543
+
+            
+          
+        
+      
+
+
+Distribution
+
+	Online distribution:  http://ecosystems.mbl.edu/PIE/data/LTE/LTE-TIDE-NektonFlumeDensity.html
+
+
+Geographic Coverage
+
+
+	Bounding Coordinates
+
+		Geographic description:	"Sweeney Creek", off Rowley River, Ipswich, MA
+		West bounding coordinate:	-70.851
+		East bounding coordinate:	-70.845
+		North bounding coordinate:	42.724
+		South bounding coordinate:	42.719
+	
+		Geographic description:	West Creek, off Rowley River, Rowley, MA.
+		West bounding coordinate:	-70.852
+		East bounding coordinate:	-70.846
+		North bounding coordinate:	42.741
+		South bounding coordinate:	42.736
+	
+		Geographic description:	Clubhead Creek off Rowley River, Rowley, MA.
+		West bounding coordinate:	-70.842
+		East bounding coordinate:	-70.836
+		North bounding coordinate:	42.742
+		South bounding coordinate:	42.738
+	
+		Geographic description:	Nelson Island Creek, off Rowley River, Rowley,
+		West bounding coordinate:	-70.836
+		East bounding coordinate:	-70.831
+		North bounding coordinate:	42.744
+		South bounding coordinate:	42.74
+	
+
+
+
+Temporal Coverage
+
+	Start Date:  2003-09-01
+	End Date:  2015-09-25
+
+Maintenance
+
+	Version 01: January 25, 2012, updated data and metadata. Used MarcrosExportEML_HTML (working)pie_excel2007.xlsm 1/18/12 4:51 PM for QA/QC to EML 2.1.0
+
+
+Dataset Contact
+
+	Position:	Information Manager
+	Organization:	LTER Network Office
+	
+	Address:
+			UNM Biology Department, MSC03-2020
+			1 University of New Mexico
+			Albuquerque, NM 87131-0001  USA
+	
+	Phone:		505 277-2535
+	Fax:		505 277-2541
+	Email:		tech-support@lternet.edu
+	URL:		http://www.lternet.edu
+
+
+Methods
+
+
+
+	Method Step 
+
+		Description 
+
+			
+            
+Locations: Sweeney (SW), West (WE), Clubhead (CL), and Nelson (NE)
+ 
+Flume Nets
+ 
+    Each year flume nets (3-4) were installed at roughly equal distances along each creek. The flume nets, installed perpendicularly to the creek channel, consisted of two sides and removable front and back panels. The 6mm mesh net side panels were dug into the marsh so that the marsh surface formed the bottom of the “flume” and attached to PVC stakes at either end. The front (cod end) of the flume was a 3m W x 1.5m H x 3m L conical shaped nylon mesh net that was anchored in the main creek channel to provide a low water refuge for nekton. The back panel was a 3m x 1.5m rectangular net attached to PVC stakes. The size and placement of the nets varied slightly in some years; 2003-2006 flume nets dimensions were 3m W x 10m L x 1.5m H the nets were placed at the creek edge in the low marsh tall Spartina alterniflora (TSA) and extended into the high marsh Spartina patens (SP); 2009-2010 flume nets were 2m W x 5 m L x 1.5 m H and placed in the high marsh (SP) habitat; 2011 flume nets were 3m W x 10m L x 1.5m H and placed in the TSA at the creek edge. 
+ 
+Sampling Collection and Processing
+ 
+     All flume net collections occurred at night within 48 hrs of the monthly spring tide from June to September. Prior to sampling events the nets were lowered to ensure nekton could freely move in and out of the sampling area. At slack high tide teams quietly approached the nets and deployed them capturing any nekton inside the area of during high tide. As the tide fell nekton were funneled into the code end where they were recovered at low tide. In the lab the nekton were identified to the lowest taxonomic level, measured to the nearest millimeter, and weighed to the nearest 0.01 grams. For fishes total length (TL) was measured from the tip of the snout to the end of the caudal fin. Shrimp TL was measured from the tip of the rostrum to the end of the tail. For crab species the carapace width was measured from its widest point. 
+ 
+Fish Exclusion
+ 
+     From 2004-2006, as part of a series of experiments to understand the role of fish in food web controls, a barrier designed to prevent the movement of fish was installed in the right branch of  SW and WE. The barrier was constructed of wood, PVC, and NITEX and entrenched into the creek bottom and side walls. Fish on the upstream side of the barricade were removed to create and artificially low density. Each year at the end of the season the fish blocks were removed and reinstalled in the spring of the next year. 
+
+          
+
+
+Data Table
+
+	Entity Name:  LTE-TIDE-NektonFlumeDensity.csv
+	Entity Description:  Nekton species counts and density from flume net collections along Rowley River tidal creeks associated with long term fertilization experiments, Rowley, MA.
+	Object Name:  LTE-TIDE-NektonFlumeDensity.csv
+
+
+
+Data Format
+
+	Number of Header Lines:  1
+	Attribute Orientation:  column
+	Field Delimiter:  ,
+	Number of Records:  1906
+
+
+
+Attributes
+
+	Attribute Name:  Date
+	Attribute Label:  Date
+	Attribute Definition:  Sampling Date
+	Storage Type:  
+	Measurement Scale: 
+	Missing Value Code: NA  (NA = not available)
+
+
+	Attribute Name:  Creek
+	Attribute Label:  Creek
+	Attribute Definition:  Creek Sampled
+	Storage Type:  
+	Measurement Scale: 
+		SW= Sweeney- Nutrient Enriched
+		NE= Nelson- Reference
+		WE= West- Reference
+		CL= Clubhead- Nutrient enriched
+	Missing Value Code: NA  (NA = not available)
+
+
+	Attribute Name:  Branch
+	Attribute Label:  Branch
+	Attribute Definition:  Branch Sampled
+	Storage Type:  
+	Measurement Scale: 
+		L= Left Branch
+		R= Right Branch
+		C= Confluence
+	Missing Value Code: NA  (NA = not available)
+
+
+	Attribute Name:  Replicate
+	Attribute Label:  Replicate
+	Attribute Definition:  Number of the replicate net
+	Storage Type:  
+	Measurement Scale: 
+		Number of the replicate net
+	Missing Value Code: NA  (NA = not available)
+
+
+	Attribute Name:  Fish Treatment
+	Attribute Label:  Fish Treatment
+	Attribute Definition:  Areas with low fish density were ones up stream of the block nets where fish had been removed. Ambient fish density areas were down stream of the block nes and had normal fish densities.
+	Storage Type:  
+	Measurement Scale: 
+		AMB= ambient fish density
+		LOW= low fish density
+	Missing Value Code: NA  (NA = not available)
+
+
+	Attribute Name:  Species
+	Attribute Label:  Species
+	Attribute Definition:  Species identified to the lowest taxonomic level
+	Storage Type:  
+	Measurement Scale: 
+		ANR= Anguilla rostrata American eel
+		PUP= Pungitius pungitius Ninespine stickleback
+		FUH= Fundulus heteroclitus Common mummuchog
+		GRC= Carcinus maenas Green crab
+		MEM= Menidia menidia Atlantic silverside
+		PAP= Palaemonetes pugio Grass shrimp
+		SYF= Syngnathus fuscus Commom pipefish
+		APQ= Apeltes quadracus Four-spined stickleback
+		CRS= Crangon septemspinosa Sand shrimp
+		CLU= Clupeid Herring menhaden etc
+		XAN= Xanthidae Walking crab spp
+	Missing Value Code: NA  (NA = not available)
+
+
+	Attribute Name:  Number Caught
+	Attribute Label:  Number Caught
+	Attribute Definition:  the total number of individuals captured of a species for that sampling effort
+	Storage Type:  
+	Measurement Scale: 
+		Units:  number
+		Number Type:  real
+	Missing Value Code: NA  (NA = not available)
+
+
+	Attribute Name:  Nekton density
+	Attribute Label:  Nekton density
+	Attribute Definition:  the total number captured divided by the area of the net used, in numbers/m2
+	Storage Type:  
+	Measurement Scale: 
+		Units:  numberPerMeterSquared
+		Number Type:  real
+	Missing Value Code: NA  (NA = not available)
+
+
