@@ -6,22 +6,32 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+#load libs
 library(tidyverse)
 library(readr)
 library(janitor)
 library(lubridate)
 library(pscl)
+library(vegan)
+library(car)
+library(fitdistrplus)
+
+#load raw data
 macro <- read_csv('../data/LTE-TIDE-Macroinfauna.csv') %>% clean_names()
 nekton <- read_csv('../data/LTE-TIDE-NektonFlumeDensity.csv') %>% clean_names()
 plant <- read_csv('../data/LTE-TIDE-MarshPlantCover.csv') %>% clean_names()
 
+#get year and month
 nekton <- nekton %>% mutate(month = str_extract(date, '[:alpha:]{3}'), year = as.double(str_extract(date, '[:digit:]{4}')))
 
+#extract month abv
 macro <- macro %>% mutate(month = str_extract(month, '[:alpha:]{3}'))
 
+#replace branch letters with names
 macro$branch[macro$branch == 'L'] <- 'Left'
 macro$branch[macro$branch == 'R'] <- 'Right'
 
+#
 macro2 <- macro %>% group_by(year, month, creek, branch) %>% summarise(num_fabricia_sabella = sum(num_fabricia_sabella),
                                                                num_manayunkia_aestuarina = sum (num_manayunkia_aestuarina),
                                                                num_eteone_heteropoda = sum(num_eteone_heteropoda),
@@ -61,25 +71,73 @@ nekton$creek[nekton$creek == 'NE'] <- 'Nelson'
 nekton$creek[nekton$creek == 'SW'] <- 'Sweeney'
 nekton$creek[nekton$creek == 'WE'] <- 'West'
 
+#fish name replacement
+nekton$species[nekton$species == 'ANR'] <- 'anguilla_rostrata'
+nekton$species[nekton$species == 'PUP'] <- 'pungitius_pungitius'
+nekton$species[nekton$species == 'FUH'] <- 'fundulus_heteroclitus'
+nekton$species[nekton$species == 'CRC'] <- 'carcinus_maenas'
+nekton$species[nekton$species == 'MEM'] <- 'menidia_menidia'
+nekton$species[nekton$species == 'PAP'] <- 'palaemonetes_pugio'
+nekton$species[nekton$species == 'SYF'] <- 'syngnathus_fuscus'
+nekton$species[nekton$species == 'APQ'] <- 'apeltes_quadracus'
+nekton$species[nekton$species == 'CRS'] <- 'crangon_septemspinosa'
+nekton$species[nekton$species == 'CLU'] <- 'clupeid_herring'
+nekton$species[nekton$species == 'XAN'] <- 'xanthidae_spp'
 
 
-nekton2 <- nekton %>% group_by(year, month, creek) %>% summarise(num_number_caught = sum(number_caught),
-                                                                          num_nekton_density = sum(nekton_density))
 
-nektonxmacro <- full_join(macro2, nekton2, by = c("year", "month", "creek")) %>% na.omit()
+nekton2 <- nekton %>% group_by(year, month, creek, branch, species) %>% summarise(count = sum(number_caught)) %>% mutate(type = 'nekton')
+  
 
-nektonxmacro$month[nektonxmacro$month == 'Jun'] <- 'June'
-nektonxmacro$month[nektonxmacro$month == 'Jul'] <- 'July'
-nektonxmacro$month[nektonxmacro$month == 'Aug'] <- 'August'
-nektonxmacro$month[nektonxmacro$month == 'Sep'] <- 'September'
+nektonxmacro <- rbind(macro2, nekton2) %>% na.omit() %>% group_by(year, month, creek, branch, type) %>% mutate(count_percent = count/sum(count), shannon = diversity(count, index = 'shannon'), total_count = sum(count), treatment = ifelse(creek %in% c('Clubhead', 'Sweeney'), 'fertilized', 'control'))
 
-nektonxmacro <- nektonxmacro %>% mutate(date = my(month + )
+nektonxmacro$month[nektonxmacro$month == 'Jun'] <- 6
+nektonxmacro$month[nektonxmacro$month == 'Jul'] <- 7
+nektonxmacro$month[nektonxmacro$month == 'Aug'] <- 8
+nektonxmacro$month[nektonxmacro$month == 'Sep'] <- 9
+nektonxmacro$month[nektonxmacro$month == 'Oct'] <- 10
+
+nektonxmacro <- nektonxmacro %>% mutate(date = ym(paste(year, month, sep='-'))) %>% select(-c(year, month)) %>% filter(month != 10)
 
 
-nekton2 %>% ggplot(aes(x = month, y = year, color = creek, size = num_nekton_density, alpha = 0.3)) +
+write_csv(nektonxmacro, 'nektonxmacro.csv')
+
+#shannon change over years during august, faceted by type/treatment and colored by creek location, branches kept together
+nektonxmacro %>% filter(month == 8) %>% ggplot(aes(x = year, y =  shannon, color = creek)) +
   geom_point() +
-  scale_size_continuous(range = c(0.1,5)) +
+  stat_smooth() +
+  facet_wrap(type~treatment)
+
+#looking at nekton counts in the right branch of clubhead
+nektonxmacro %>% filter(creek == 'Clubhead', type == 'nekton', month == 8, branch == 'Right') %>% ggplot(aes(x = year, y = count, color = species)) +
+  geom_point() +
+  stat_smooth()
+
+#looking at macro counts in the right branch of clubhead
+nektonxmacro %>% filter(creek == 'Clubhead', type == 'macro', month == 8, branch == 'Right', count < 500, count > 200) %>% ggplot(aes(x = year, y = count, color = species, alpha = species, size = species)) +
+  geom_point()
+
+#looking at total counts in the right branch of clubhead
+nektonxmacro %>% filter(month == 8) %>% ggplot(aes(x = year, y = count, color = type)) +
+  geom_point() +
+  stat_smooth() +
   facet_wrap(creek~.)
 
-zeroinfl(num_oligochaetes ~ num_number_caught, data = nektonxmacro)
+#
+nektonxmacro %>% filter(creek == 'Clubhead', month == 8, species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'streblospio_benedicti', 'manayunkia_aestuarina', 'menidia_menidia'), branch == 'Right') %>% ggplot(aes(x = year, y = count, color = species)) +
+  geom_point()
+
+spice <- nektonxmacro %>% filter(species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'streblospio_benedicti', 'manayunkia_aestuarina', 'menidia_menidia'))
+
+summary(glm(count ~ date + creek + branch, data = nektonxmacro, family = 'poisson'))
+
+summary(glm(count ~ date + creek * species, data = spice, family = 'poisson'))
+
+very_significant <- glm(total_count ~ date + creek * type, data = nektonxmacro)
+
+summary(very_significant)
+
+plot(very_significant, which = c(1, 2, 4))
+
+descdist(nektonxmacro$total_count)
 ```

@@ -1,0 +1,48 @@
+---
+title: "Plum Island Marsh LTER; Diversity Cascades"
+author: "Jared Lourie"
+date: "12/18/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(readr)
+library(janitor)
+library(lubridate)
+library(pscl)
+library(vegan)
+library(car)
+library(fitdistrplus)
+nektonxmacro <- read_csv('../data/nektonxmacro.csv')
+```
+
+## Plum Island LTER
+
+PIE LTER is a long term ecological research network involving  PIs and students from a range of Universities. Their mission is to understand marsh ecosystems, the land-sea interface, and involve government and non-government organizations in outreach & understanding current or future anthropogenic impact on these environments.
+
+My interests were directed towards thoughts about marsh diversity in the **Tide Project**.
+
+![](https://pie-lter.ecosystems.mbl.edu/sites/default/files/images/SweeneyLTE.jpg)
+
+## The Tide Project
+
+- *A unique approach* at scaling experimental ecology and studying **true** effects (mesocosm).
+  - The entire ecosystem, inclusive of known knowns, known unknowns, and unknown unknowns is present and active.
+- *Addressing issues of global-change biology* by studying abiotic and geochemical shifts on a larger scale.
+  - Effects on the nitrogen, carbon, or sulfur cycles are more accurately understood.
+- *An emphasis on undergraduate and young scientist involvement* to bring in more young investigators.
+  - Easy to approach front of ideas with hands on experiential gains to be had.
+
+## Data of interest
+
+- Two datasets pertaining to the Clubhead, Sweeney, Nelson, and West creeks; the first two being fertilized sites recieving nitrogen rich runoff, and the latter two being control sites.
+- One of these datasets describes acroinfaunal counts of species in the creeks, and the other describes nekton counts in the creeks; their common factors to join by being month, year, creek, and branch of the creek.
+- This involved some pretty in depth usage of **tidyr**, **dplyr**, **readr**, **janitor**, **lubridate**, and **vegan**.
+  - The data was really good but months were and years were recorded with different systems that were not datetime compliant and had to be extracted and modified to join on.
+  - Counts for nekton was wide data instead of long data and had to be summarized from grids to a branch, cleaned, and then pivoted to long data.
+
+## Spaghetti Code
+
+!()['./data/spaghetti.png']
+
