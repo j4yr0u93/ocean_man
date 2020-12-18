@@ -15,6 +15,7 @@ library(pscl)
 library(vegan)
 library(car)
 library(fitdistrplus)
+library(brms)
 
 #load raw data
 macro <- read_csv('../data/LTE-TIDE-Macroinfauna.csv') %>% clean_names()
@@ -97,7 +98,7 @@ nektonxmacro$month[nektonxmacro$month == 'Aug'] <- 8
 nektonxmacro$month[nektonxmacro$month == 'Sep'] <- 9
 nektonxmacro$month[nektonxmacro$month == 'Oct'] <- 10
 
-nektonxmacro <- nektonxmacro %>% mutate(date = ym(paste(year, month, sep='-'))) %>% select(-c(year, month)) %>% filter(month != 10)
+nektonxmacro <- nektonxmacro %>% mutate(date = ym(paste(year, month, sep='-')))
 
 
 write_csv(nektonxmacro, 'nektonxmacro.csv')
@@ -114,24 +115,27 @@ nektonxmacro %>% filter(creek == 'Clubhead', type == 'nekton', month == 8, branc
   stat_smooth()
 
 #looking at macro counts in the right branch of clubhead
-nektonxmacro %>% filter(creek == 'Clubhead', type == 'macro', month == 8, branch == 'Right', count < 500, count > 200) %>% ggplot(aes(x = year, y = count, color = species, alpha = species, size = species)) +
-  geom_point()
+nektonxmacro %>% filter(creek == 'Clubhead', type == 'macro', month == 8, branch == 'Right') %>% ggplot(aes(x = year, y = count, color = species)) +
+  geom_point() +
+  theme_minimal()
 
 #looking at total counts in the right branch of clubhead
-nektonxmacro %>% filter(month == 8) %>% ggplot(aes(x = year, y = count, color = type)) +
+nektonxmacro %>% filter(month == 8) %>% ggplot(aes(x = year, y = total_count, color = type)) +
   geom_point() +
   stat_smooth() +
   facet_wrap(creek~.)
 
 #
 nektonxmacro %>% filter(creek == 'Clubhead', month == 8, species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'streblospio_benedicti', 'manayunkia_aestuarina', 'menidia_menidia'), branch == 'Right') %>% ggplot(aes(x = year, y = count, color = species)) +
-  geom_point()
+  geom_point() +
+  theme_minimal() +
+  stat_smooth(se = FALSE)
 
 spice <- nektonxmacro %>% filter(species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'streblospio_benedicti', 'manayunkia_aestuarina', 'menidia_menidia'))
 
 summary(glm(count ~ date + creek + branch, data = nektonxmacro, family = 'poisson'))
 
-summary(glm(count ~ date + creek * species, data = spice, family = 'poisson'))
+summary(glm(count ~ date * creek * species, data = spice, family = 'poisson'))
 
 very_significant <- glm(total_count ~ date + creek * type, data = nektonxmacro)
 

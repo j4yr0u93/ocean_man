@@ -8,13 +8,11 @@ output: ioslides_presentation
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(readr)
-library(janitor)
-library(lubridate)
-library(pscl)
-library(vegan)
 library(car)
 library(fitdistrplus)
+library(emmeans)
 nektonxmacro <- read_csv('../data/nektonxmacro.csv')
+nektonxmacro$creek <- factor(nektonxmacro$creek, levels = c('Clubhead', 'Sweeney', 'Nelson', 'West'))
 ```
 
 ## Plum Island LTER
@@ -44,5 +42,83 @@ My interests were directed towards thoughts about marsh diversity in the **Tide 
 
 ## Spaghetti Code
 
-![](https://raw.githubusercontent.com/j4yr0u93/ocean_man/master/data/spaghetti.PNG)
+![](https://raw.githubusercontent.com/j4yr0u93/ocean_man/master/data/spaghetti.PNG){width=90%}
+
+## Preliminary Visualization
+```{r vis1, warning=FALSE, echo=FALSE}
+nektonxmacro %>% filter(month == 8) %>% ggplot(aes(x = year, y =  shannon, color = creek)) +
+  geom_point() +
+  stat_smooth() +
+  facet_wrap(type~treatment) +
+  theme_minimal() +
+  scale_color_viridis_d()
+```
+
+## What is up in the Nekton Club
+```{r vis2, warning=FALSE, echo=FALSE}
+nektonxmacro %>% filter(creek == 'Clubhead', type == 'nekton', month == 8, branch == 'Right') %>% ggplot(aes(x = year, y = count, color = species)) +
+  geom_point() +
+  stat_smooth(se=FALSE) +
+  theme_minimal()
+```
+
+## Inspecting Nekton & Macro Club
+```{r vis3, warning=FALSE, echo=FALSE}
+nektonxmacro %>% filter(creek == 'Clubhead', month == 8, species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'streblospio_benedicti', 'manayunkia_aestuarina', 'menidia_menidia'), branch == 'Right') %>% ggplot(aes(x = year, y = count, color = species)) +
+  geom_point() +
+  theme_minimal() +
+  stat_smooth(se = FALSE)
+```
+
+## Inspecting Nekton & Macro Sweeney
+```{r vis4, warning=FALSE, echo=FALSE}
+nektonxmacro %>% filter(creek == 'Sweeney', month == 8, species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'streblospio_benedicti', 'manayunkia_aestuarina', 'menidia_menidia'), branch == 'Right') %>% ggplot(aes(x = year, y = count, color = species)) +
+  geom_point() +
+  theme_minimal() +
+  stat_smooth(se = FALSE)
+```
+
+## Nekton & Macro effects
+```{r vis5, warning=FALSE, echo=FALSE}
+creek_effect <- glm(total_count ~ date + creek * type, data = nektonxmacro)
+contrast(emmeans(creek_effect, ~ creek | type))
+```
+
+- Fertilized creeks are clearly outliers from very similar controls
+- Nekton effect is not obvious in data, look at species
+
+## Nekton & Macro assumption
+```{r vis6, warning=FALSE, echo=FALSE}
+par(mfrow=c(1,3))
+plot(creek_effect, which = c(1, 2, 4))
+```
+
+Resids, qqplot, and cooks d are all in normal assumption range.
+
+## Nekton Species Effect
+```{r vis7, warning=FALSE, echo=FALSE}
+nekton_subset <- nektonxmacro %>% filter(type == 'nekton', species %in% c('anguilla_rostrata', 'crangon_septemspinosa', 'fundulus_heteroclitus', 'menidia_menidia', 'palaemonetes_pugio', 'pungitius_pungitius', 'xanthidae_spp'))
+key_nekton_effect <- glm(count ~ date + creek * species, data = nekton_subset, family = 'Gamma')
+nek.emm <- emmeans(key_nekton_effect, ~ creek | species)
+contrast(regrid(nek.emm))
+```
+
+## Nekton Species assumption
+```{r vis8, warning=FALSE, echo=FALSE}
+par(mfrow=c(1,3))
+plot(key_nekton_effect, which = c(1, 2, 4))
+```
+
+## Bad data?
+```{r vis9, warning=FALSE, echo=FALSE}
+descdist(nekton_subset$count)
+```
+
+
+## Shannon Model
+```{r vis10, warning=FALSE, echo=FALSE}
+creek_effect <- glm(shannon ~ date + creek * type, data = nektonxmacro)
+contrast(emmeans(creek_effect, ~ creek | type))
+```
+
 
