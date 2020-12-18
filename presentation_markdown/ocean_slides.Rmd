@@ -44,5 +44,5 @@ My interests were directed towards thoughts about marsh diversity in the **Tide 
 
 ## Spaghetti Code
 
-!()['./data/spaghetti.png']
+![](https://raw.githubusercontent.com/j4yr0u93/ocean_man/master/data/spaghetti.PNG)
 
