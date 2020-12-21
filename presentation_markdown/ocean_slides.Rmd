@@ -46,7 +46,7 @@ My interests were directed towards thoughts about marsh diversity in the **Tide 
 
 ## Preliminary Visualization
 ```{r vis1, warning=FALSE, echo=FALSE}
-nektonxmacro %>% filter(month == 8) %>% ggplot(aes(x = year, y =  shannon, color = creek)) +
+nektonxmacro %>% filter(month %in% c(7, 8, 9)) %>% ggplot(aes(x = year, y =  shannon, color = creek)) +
   geom_point() +
   stat_smooth() +
   facet_wrap(type~treatment) +
@@ -56,7 +56,7 @@ nektonxmacro %>% filter(month == 8) %>% ggplot(aes(x = year, y =  shannon, color
 
 ## What is up in the Nekton Club
 ```{r vis2, warning=FALSE, echo=FALSE}
-nektonxmacro %>% filter(creek == 'Clubhead', type == 'nekton', month == 8, branch == 'Right') %>% ggplot(aes(x = year, y = count, color = species)) +
+nektonxmacro %>% filter(creek == 'Clubhead', type == 'nekton', month %in% c(7, 8, 9), branch == 'Right') %>% ggplot(aes(x = year, y = count, color = species)) +
   geom_point() +
   stat_smooth(se=FALSE) +
   theme_minimal()
@@ -64,7 +64,7 @@ nektonxmacro %>% filter(creek == 'Clubhead', type == 'nekton', month == 8, branc
 
 ## Inspecting Nekton & Macro Club
 ```{r vis3, warning=FALSE, echo=FALSE}
-nektonxmacro %>% filter(creek == 'Clubhead', month == 8, species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'streblospio_benedicti', 'manayunkia_aestuarina', 'menidia_menidia'), branch == 'Right') %>% ggplot(aes(x = year, y = count, color = species)) +
+nektonxmacro %>% filter(creek == 'Clubhead', species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'streblospio_benedicti', 'manayunkia_aestuarina', 'menidia_menidia'), branch == 'Right') %>% ggplot(aes(x = year, y = count, color = species)) +
   geom_point() +
   theme_minimal() +
   stat_smooth(se = FALSE)
@@ -72,7 +72,7 @@ nektonxmacro %>% filter(creek == 'Clubhead', month == 8, species %in% c('palaemo
 
 ## Inspecting Nekton & Macro Sweeney
 ```{r vis4, warning=FALSE, echo=FALSE}
-nektonxmacro %>% filter(creek == 'Sweeney', month == 8, species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'streblospio_benedicti', 'manayunkia_aestuarina', 'menidia_menidia'), branch == 'Right') %>% ggplot(aes(x = year, y = count, color = species)) +
+nektonxmacro %>% filter(creek == 'Sweeney', month %in% c(7, 8, 9), species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'streblospio_benedicti', 'manayunkia_aestuarina', 'menidia_menidia'), branch == 'Right') %>% ggplot(aes(x = year, y = count, color = species)) +
   geom_point() +
   theme_minimal() +
   stat_smooth(se = FALSE)
@@ -80,8 +80,8 @@ nektonxmacro %>% filter(creek == 'Sweeney', month == 8, species %in% c('palaemon
 
 ## Nekton & Macro effects
 ```{r vis5, warning=FALSE, echo=FALSE}
-creek_effect <- glm(total_count ~ date + creek * type, data = nektonxmacro)
-contrast(emmeans(creek_effect, ~ creek | type))
+creek_effect <- glm(shannon ~ date + creek * type, data = nektonxmacro)
+contrast(emmeans(creek_effect, ~ creek * type))
 ```
 
 - Fertilized creeks are clearly outliers from very similar controls
@@ -112,13 +112,6 @@ plot(key_nekton_effect, which = c(1, 2, 4))
 ## Bad data?
 ```{r vis9, warning=FALSE, echo=FALSE}
 descdist(nekton_subset$count)
-```
-
-
-## Shannon Model
-```{r vis10, warning=FALSE, echo=FALSE}
-creek_effect <- glm(shannon ~ date + creek * type, data = nektonxmacro)
-contrast(emmeans(creek_effect, ~ creek | type))
 ```
 
 

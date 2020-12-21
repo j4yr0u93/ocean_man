@@ -1,0 +1,55 @@
+---
+title: "Final Report"
+author: "Jared Lourie"
+date: "12/21/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(readr)
+library(car)
+library(fitdistrplus)
+library(emmeans)
+library(betareg)
+nektonxmacro <- read_csv('../data/nektonxmacro.csv')
+nektonxmacro$creek <- factor(nektonxmacro$creek, levels = c('Clubhead', 'Sweeney', 'Nelson', 'West'))
+nektonxmacro <- nektonxmacro %>% mutate(branch = as.factor(branch), type = as.factor(type), treatment = as.factor(treatment))
+```
+|    In order to understand the PIE LTER, you have to think like the Marsh Man or think like the green guy in the swamp, in tune with the environment and knees deep in the action as an ecologist should be. My first thoughts when approaching the ideas surrounding the TIDE project and understanding the impact of agricultural runoff were about ecological recovery from within the Plum Island ecosystem. If there were effects on the population or the geomorphology that would be adverse to those populations, would competitions and top-down or bottom-up effects end up reaching some sort of new stability, or would the ecosystem ultimately crash? Presumably a Pavlovian carrot throw into the mix of a delicate ecosystem won't end over very well ([EPA facts on poor fertilizer control](https://www.epa.gov/nutrientpollution/sources-and-solutions-agriculture)). With this consideration in mind I joined data detailing information concerning Nekton and Macroinfaunal populations. For more context, the PIE LTER is the Plum Island Estuary long term ecology research group, a collaboration involving many professors and universities. The summary of the following merged dataset is created from these datasets created and uploaded by PI [Linda Deegan et. al](https://thetideproject.org/about/people/); [Macroinfaunal](https://pie-lter.ecosystems.mbl.edu/content/macroinfaunal-counts-2003-2013-marsh-cores-along-rowley-river-tidal-creeks-associated-long-t) & [Nekton](https://pie-lter.ecosystems.mbl.edu/content/nekton-species-counts-and-density-flume-net-collections-along-rowley-river-tidal-creeks-asso). 
+```{r peak, echo=FALSE}
+summary(nektonxmacro)
+```
+ 
+|    Looking into the data a bit and using the package [vegan](https://cran.r-project.org/web/packages/vegan/vegan.pdf) to assign [Shannon Diversity Index](https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Natural_Resources_Biometrics_(Kiernan)/10%3A_Quantitative_Measures_of_Diversity_Site_Similarity_and_Habitat_Suitability/10.01%3A_Introduction__Simpsons_Index_and_Shannon-Weiner_Index) values, an understanding of ecology eveness and abundance can be visualized.
+
+```{r shannon_viz, echo=FALSE, warning=FALSE}
+nektonxmacro %>% filter(month %in% c(7, 8, 9)) %>% ggplot(aes(x = year, y =  shannon, color = creek)) +
+  geom_point() +
+  stat_smooth(formula = 'y ~ x', method = 'loess') +
+  facet_wrap(type~treatment) +
+  theme_minimal() +
+  scale_color_viridis_d()
+```
+
+|    Macro Control appears to have normal oscillations of Shannon Diversity eveness, indicative of a pattern of population equilibrium and likely a Lotka-Volterra zero growth [predator/prey](http://www.tiem.utk.edu/~gross/bioed/bealsmodules/predator-prey.html) & [competition](http://www.tiem.utk.edu/~gross/bioed/bealsmodules/competition.html) interaction. Interestingly enough nekton control seems to lose it's normal oscillation of diversity eveness, with both creeks tapering off and losing eveness and likely their nekton equilibria. Fertilized macro and nekton diversity curves appear to be tapering off with normal oscillation, indicative of a linear diversity or equilibria loss. A prelminary look at change in percent representation of species of interest by creek is not very revealing especially with some macro and nekton species being in the same model. As it appears above it seems as though nekton and macro overall are not linked.
+
+```{r interest_model, echo=FALSE, warning=FALSE}
+nektonxmacro %>% filter(species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'streblospio_benedicti', 'manayunkia_aestuarina', 'menidia_menidia')) %>% ggplot(aes(x = year, y = count_percent, color = species)) +
+  geom_point() +
+  theme_minimal() +
+  stat_smooth(se = FALSE, formula = 'y ~ x', method = 'loess') +
+  facet_wrap(creek~.)
+```
+```{r contrast_species, echo=FALSE, warning=FALSE}
+nmd_interest <- nektonxmacro %>% filter(species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'menidia_menidia'))
+nek_spec_mod <- glm(count_percent ~ date + creek * species, data = nmd_interest, family=binomial(logit))
+contrast(emmeans(nek_spec_mod, ~ creek * species))
+```
+
+|   A likelihood binomial logit regression model reveals some differences between species across the creeks, but with poor significance and standard error values it is difficult to confirm the potency of the effect. The regression model in itself checks out with a tight resids vs fitted plot, a clean qq plot, and small cook's distance values generally under 0.005. Poor significance of contrast related to the shrimp and silverback species is likely due to their low abundance in observation, a sample size error.
+
+```{r contrast_model_check, echo=FALSE, warning=FALSE}
+par(mfrow=c(1,3))
+plot(nek_spec_mod, which = c(1, 2, 4))
+```
