@@ -1,5 +1,5 @@
 ---
-title: "Final Report"
+title: "Ocean Man; Marsh Population Regression"
 author: "Jared Lourie"
 date: "12/21/2020"
 output: pdf_document
@@ -21,10 +21,10 @@ nektonxmacro <- nektonxmacro %>% mutate(branch = as.factor(branch), type = as.fa
 summary(nektonxmacro)
 ```
  
-|    Looking into the data a bit and using the package [vegan](https://cran.r-project.org/web/packages/vegan/vegan.pdf) to assign [Shannon Diversity Index](https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Natural_Resources_Biometrics_(Kiernan)/10%3A_Quantitative_Measures_of_Diversity_Site_Similarity_and_Habitat_Suitability/10.01%3A_Introduction__Simpsons_Index_and_Shannon-Weiner_Index) values, an understanding of ecology eveness and abundance can be visualized.
+|    Looking into the data a bit and using the package [vegan](https://cran.r-project.org/web/packages/vegan/vegan.pdf) to assign [Shannon Diversity Index](https://stats.libretexts.org/Bookshelves/Applied_Statistics/Book%3A_Natural_Resources_Biometrics_(Kiernan)/10%3A_Quantitative_Measures_of_Diversity_Site_Similarity_and_Habitat_Suitability/10.01%3A_Introduction__Simpsons_Index_and_Shannon-Weiner_Index) values, an understanding of ecosystem eveness and abundance can be visualized.
 
 ```{r shannon_viz, echo=FALSE, warning=FALSE}
-nektonxmacro %>% filter(month %in% c(7, 8, 9)) %>% ggplot(aes(x = year, y =  shannon, color = creek)) +
+nektonxmacro %>% filter(month %in% c(7, 8, 9)) %>% ggplot(aes(x = date, y =  shannon, color = creek)) +
   geom_point() +
   stat_smooth(formula = 'y ~ x', method = 'loess') +
   facet_wrap(type~treatment) +
@@ -37,12 +37,13 @@ nektonxmacro %>% filter(month %in% c(7, 8, 9)) %>% ggplot(aes(x = year, y =  sha
 |    According to [Sinéad M. Crotty et al](https://onlinelibrary-wiley-com.ezproxy.lib.umb.edu/doi/full/10.1111/ele.13146), salt marsh biodiveristy is affected mostly by foundation or keystone species which allow for biodiversity to grow and accumulate within a marsh patchwork. I hypothesize that coastal eutrophication of the PIE network [(Linda A. Deegan et. al)](https://search-proquest-com.ezproxy.lib.umb.edu/docview/1113980959?accountid=28932&clientId=46815&pq-origsite=summon) from nutrient enrichment affects a foundational species of nekton biodiversity that is interconnected to all of the creeks regardless of direct proximity to enrichment.
 
 ```{r interest_model, echo=FALSE, warning=FALSE}
-nektonxmacro %>% filter(species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'streblospio_benedicti', 'manayunkia_aestuarina', 'menidia_menidia')) %>% ggplot(aes(x = year, y = count_percent, color = species)) +
+nektonxmacro %>% filter(species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'streblospio_benedicti', 'manayunkia_aestuarina', 'menidia_menidia')) %>% ggplot(aes(x = date, y = count_percent, color = species)) +
   geom_point() +
   theme_minimal() +
   stat_smooth(se = FALSE, formula = 'y ~ x', method = 'loess') +
   facet_wrap(creek~.)
 ```
+* There appears to be an unusual loss of equilibrium with observed creek sediment edge habitating worms in Nelson, the cause unclear in literature.
 ```{r contrast_species, echo=FALSE, warning=FALSE}
 nmd_interest <- nektonxmacro %>% filter(species %in% c('palaemonetes_pugio', 'fundulus_heteroclitus', 'menidia_menidia'))
 nek_spec_mod <- glm(count_percent ~ date + creek * species, data = nmd_interest, family=binomial(logit))
@@ -70,3 +71,4 @@ contrast(emmeans(spec_model, ~ branch * creek | type))
 general_model <- glm(total_count ~ date + creek * type, data=nektonxmacro)
 contrast(emmeans(general_model, ~ creek | type))
 ```
+|    I think if I wanted to have a better understanding of population counts and the effects of treatment on them, I would need a more in depth framework with more specific covariates to interpret, a method to account for general anthropogenic noise or effects on all creeks, and a better understanding of modified individual behaviour in response to treatment. Optimally my guess is to understand nekton population representation I will need bayesian beta regression with a larger dataset. Without even having more behavioural data, I think understanding at what probability under what conditions I may pull a mummichog out of a hat will help with trying to create auxillary hypotheses about new top-down and bottom-up effects. 

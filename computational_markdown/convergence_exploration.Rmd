@@ -32,7 +32,7 @@ macro <- macro %>% mutate(month = str_extract(month, '[:alpha:]{3}'))
 macro$branch[macro$branch == 'L'] <- 'Left'
 macro$branch[macro$branch == 'R'] <- 'Right'
 
-#
+#sum select species
 macro2 <- macro %>% group_by(year, month, creek, branch) %>% summarise(num_fabricia_sabella = sum(num_fabricia_sabella),
                                                                num_manayunkia_aestuarina = sum (num_manayunkia_aestuarina),
                                                                num_eteone_heteropoda = sum(num_eteone_heteropoda),
